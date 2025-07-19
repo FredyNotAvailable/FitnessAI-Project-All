@@ -8,10 +8,10 @@ import {
   Input,
   InputGroup,
   InputRightElement,
-  Select,
   Stack,
   Text,
   Link,
+  Select,
   useToast,
 } from "@chakra-ui/react";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
@@ -22,20 +22,37 @@ import { useNavigate } from "react-router-dom";
 
 export default function RegisterPage() {
   const [nombre, setNombre] = useState("");
-  const [edad, setEdad] = useState("");
-  const [peso, setPeso] = useState("");
-  const [altura, setAltura] = useState("");
-  const [objetivo, setObjetivo] = useState<"ganar_musculo" | "bajar_peso">("ganar_musculo");
+  const [fechaNacimiento, setFechaNacimiento] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [objetivo, setObjetivo] = useState("");
+  const [frecuencia, setFrecuencia] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
   const toast = useToast();
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
+
+  const calcularEdad = (fecha: string) => {
+    const hoy = new Date();
+    const nacimiento = new Date(fecha);
+    let edad = hoy.getFullYear() - nacimiento.getFullYear();
+    const m = hoy.getMonth() - nacimiento.getMonth();
+    if (m < 0 || (m === 0 && hoy.getDate() < nacimiento.getDate())) {
+      edad--;
+    }
+    return edad;
+  };
 
   const handleRegister = async () => {
-    if (!nombre || !edad || !peso || !altura || !objetivo || !email || !password) {
+    if (
+      !nombre ||
+      !fechaNacimiento ||
+      !email ||
+      !password ||
+      !objetivo ||
+      !frecuencia
+    ) {
       toast({
         title: "Campos incompletos",
         description: "Por favor, completa todos los campos.",
@@ -58,34 +75,50 @@ export default function RegisterPage() {
       return;
     }
 
+    const fechaNacDate = new Date(fechaNacimiento);
+    const hoy = new Date();
+    if (fechaNacDate >= hoy) {
+      toast({
+        title: "Fecha inválida",
+        description: "La fecha de nacimiento debe ser anterior a hoy.",
+        status: "error",
+        duration: 3000,
+        isClosable: true,
+      });
+      return;
+    }
+
     setIsLoading(true);
 
     try {
-      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
       const user = userCredential.user;
 
       await setDoc(doc(db, "usuarios", user.uid), {
         id: user.uid,
         nombre,
-        correo: email,
-        edad: Number(edad),
-        peso: Number(peso),
-        altura: Number(altura),
+        fechaNacimiento,
+        edad: calcularEdad(fechaNacimiento),
         objetivo,
+        frecuenciaSemanal: Number(frecuencia),
         createdAt: serverTimestamp(),
       });
 
       toast({
         title: "¡Registro exitoso!",
-        description: "Bienvenido/a a FitnessAI. Prepárate para transformar tu entrenamiento.",
+        description:
+          "Bienvenido/a a FitnessAI. Prepárate para transformar tu entrenamiento.",
         status: "success",
         duration: 3500,
         isClosable: true,
-         position: "top", // <--- Aquí
-        // onCloseComplete: () => {
-        //   navigate("/login");
-        // },
+        position: "top",
       });
+
+      navigate("/login");
     } catch (error: any) {
       toast({
         title: "Error",
@@ -121,7 +154,13 @@ export default function RegisterPage() {
         overflowY="auto"
       >
         <Container maxW="md">
-          <Heading mb={6} textAlign="center" color="gray.700" fontWeight="extrabold" fontSize="3xl">
+          <Heading
+            mb={6}
+            textAlign="center"
+            color="gray.700"
+            fontWeight="extrabold"
+            fontSize="3xl"
+          >
             Crear cuenta
           </Heading>
 
@@ -135,48 +174,13 @@ export default function RegisterPage() {
             />
 
             <Input
-              placeholder="Edad"
-              type="number"
-              min={18}
-              max={100}
-              value={edad}
-              onChange={(e) => setEdad(e.target.value)}
+              type="date"
+              placeholder="Fecha de nacimiento"
+              value={fechaNacimiento}
+              onChange={(e) => setFechaNacimiento(e.target.value)}
               focusBorderColor="gray.500"
               borderColor="gray.300"
             />
-
-            <Input
-              placeholder="Peso (kg)"
-              type="number"
-              min={40}
-              max={180}
-              value={peso}
-              onChange={(e) => setPeso(e.target.value)}
-              focusBorderColor="gray.500"
-              borderColor="gray.300"
-            />
-
-            <Input
-              placeholder="Altura (cm)"
-              type="number"
-              min={140}
-              max={220}
-              value={altura}
-              onChange={(e) => setAltura(e.target.value)}
-              focusBorderColor="gray.500"
-              borderColor="gray.300"
-            />
-
-            <Select
-              placeholder="Selecciona tu objetivo"
-              value={objetivo}
-              onChange={(e) => setObjetivo(e.target.value as "ganar_musculo" | "bajar_peso")}
-              focusBorderColor="gray.500"
-              borderColor="gray.300"
-            >
-              <option value="ganar_musculo">Ganar músculo</option>
-              <option value="bajar_peso">Bajar de peso</option>
-            </Select>
 
             <Input
               placeholder="Correo electrónico"
@@ -208,6 +212,36 @@ export default function RegisterPage() {
               </InputRightElement>
             </InputGroup>
 
+            {/* Select Objetivo */}
+            <Select
+              placeholder="Selecciona tu objetivo"
+              value={objetivo}
+              onChange={(e) => setObjetivo(e.target.value)}
+              focusBorderColor="gray.500"
+              borderColor="gray.300"
+            >
+              <option value="perder_peso">Perder peso</option>
+              <option value="ganar_musculo">Ganar músculo</option>
+              <option value="mantenerme">Mantenerme</option>
+              <option value="mejorar_resistencia">Mejorar resistencia</option>
+              <option value="otros">Otros</option>
+            </Select>
+
+            {/* Select Frecuencia */}
+            <Select
+              placeholder="Frecuencia semanal de entrenamiento"
+              value={frecuencia}
+              onChange={(e) => setFrecuencia(e.target.value)}
+              focusBorderColor="gray.500"
+              borderColor="gray.300"
+            >
+              {[1, 2, 3, 4, 5, 6, 7].map((dia) => (
+                <option key={dia} value={dia}>
+                  {dia} día{dia > 1 ? "s" : ""}
+                </option>
+              ))}
+            </Select>
+
             <Button
               colorScheme="gray"
               bg="gray.700"
@@ -226,7 +260,12 @@ export default function RegisterPage() {
 
             <Text textAlign="center" color="gray.600" fontWeight="medium" mt={4}>
               ¿Ya tienes cuenta?{" "}
-              <Link href="/login" color="gray.700" fontWeight="bold" _hover={{ color: "gray.900" }}>
+              <Link
+                href="/login"
+                color="gray.700"
+                fontWeight="bold"
+                _hover={{ color: "gray.900" }}
+              >
                 Iniciar sesión
               </Link>
             </Text>

@@ -8,7 +8,8 @@ const theme = extendTheme({
       200: "#e2e8f0",
       300: "#cbd5e0",
       400: "#a0aec0",
-      500: "#4a5568", // gris principal
+      500: "#1a202c", // gris principal
+      // 500: "#4a5568", // gris principal
       600: "#2d3748",
       700: "#1a202c",
       800: "#171923",

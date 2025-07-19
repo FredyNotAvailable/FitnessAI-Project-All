@@ -1,137 +1,103 @@
 import {
   Box,
-  Heading,
-  Text,
+  Button,
   Flex,
-  Stat,
-  StatLabel,
-  StatNumber,
-  StatHelpText,
-  SimpleGrid,
-  Progress,
-  useColorModeValue,
-  Divider,
+  Heading,
   Icon,
+  Stack,
+  Text,
+  useToast,
 } from "@chakra-ui/react";
-import { FaRunning } from "react-icons/fa";
-import { Line } from "react-chartjs-2";
+import { FaRegSmile, FaChartBar, FaClipboardList, FaExchangeAlt } from "react-icons/fa";
 import Navbar from "../components/Navbar";
 import ChatBot from "../components/ChatBot";
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
-  Tooltip,
-  Legend,
-} from "chart.js";
-
-// Registrar componentes de Chart.js
-ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
+import { useNavigate } from "react-router-dom";
 
 export default function DashboardPage() {
-  const cardBg = useColorModeValue("white", "gray.800");
+  const toast = useToast();
+  const navigate = useNavigate();
 
-  const data = {
-    labels: ["Semana 1", "Semana 2", "Semana 3", "Semana 4"],
-    datasets: [
-      {
-        label: "Peso (kg)",
-        data: [72.5, 71.0, 70.8, 70.5],
-        borderColor: "rgb(255, 99, 132)",
-        backgroundColor: "rgba(255, 99, 132, 0.2)",
-        tension: 0.3,
-      },
-    ],
-  };
-
-  const options = {
-    responsive: true,
-    plugins: {
-      legend: {
-        position: "top" as const,
-      },
-    },
+  const handleRegistro = () => {
+    // Navega a la página del registro diario
+    navigate("/dashboard/registro-diario");
   };
 
   return (
-    <Flex direction="column" minH="100vh" bg="gray.50">
+    <Flex direction="column" minH="100vh" bg="gray.50" fontFamily="'Open Sans', sans-serif">
       <Navbar />
-      <Flex direction="column" flex="1" p={8} align="center">
-        <Heading mb={6} color="brand.700" size="lg">
-          Tu Panel de Progreso
+
+      <Flex direction="column" flex="1" p={8} maxW="960px" mx="auto" w="100%" align="center">
+        <Heading size="lg" color="brand.600" mb={4} textAlign="center">
+          Hola, [nombre] 👋 ¿Cómo va tu día?
         </Heading>
 
-        <SimpleGrid columns={{ base: 1, md: 2 }} spacing={6} maxW="900px" w="full">
-          {/* Objetivo */}
-          <Box p={6} bg={cardBg} borderRadius="lg" boxShadow="md">
-            <Heading size="md" mb={2}>Objetivo actual</Heading>
-            <Text fontSize="xl" fontWeight="bold" color="red.500">Perder grasa</Text>
-            <Text mt={2}>Meta: 65 kg &nbsp;|&nbsp; Peso actual: 70.5 kg</Text>
-            <Progress colorScheme="red" value={75} mt={4} />
-            <Text mt={2} fontSize="sm" color="gray.500">Has perdido 3.5 kg desde que empezaste</Text>
+        <Button
+          size="lg"
+          colorScheme="teal"
+          leftIcon={<FaClipboardList />}
+          onClick={handleRegistro}
+          mb={8}
+        >
+          Registrar día
+        </Button>
+
+        <Stack direction={{ base: "column", md: "row" }} spacing={6} w="100%" justify="center">
+          {/* Último resumen */}
+          <Box
+            bg="white"
+            p={6}
+            borderRadius="lg"
+            boxShadow="md"
+            flex="1"
+            textAlign="center"
+            border="1px solid"
+            borderColor="gray.200"
+          >
+            <Icon as={FaRegSmile} boxSize={6} color="blue.500" mb={2} />
+            <Text fontSize="xl" fontWeight="semibold" color="gray.700">
+              Último resumen
+            </Text>
+            <Text color="gray.500" mt={2}>Verás un resumen de tu día aquí.</Text>
           </Box>
 
-          {/* Calorías recomendadas */}
-          <Box p={6} bg={cardBg} borderRadius="lg" boxShadow="md">
-            <Heading size="md" mb={2}>Calorías diarias</Heading>
-            <Stat>
-              <StatLabel>Meta sugerida</StatLabel>
-              <StatNumber>1,800 kcal</StatNumber>
-              <StatHelpText>Proteína: 130g | Carb: 160g | Grasa: 60g</StatHelpText>
-            </Stat>
+          {/* Progreso semanal */}
+          <Box
+            bg="white"
+            p={6}
+            borderRadius="lg"
+            boxShadow="md"
+            flex="1"
+            textAlign="center"
+            border="1px solid"
+            borderColor="gray.200"
+          >
+            <Icon as={FaChartBar} boxSize={6} color="green.500" mb={2} />
+            <Text fontSize="xl" fontWeight="semibold" color="gray.700">
+              Progreso semanal
+            </Text>
+            <Text color="gray.500" mt={2}>Pronto verás tus estadísticas semanales.</Text>
           </Box>
 
-          {/* Entrenamiento del día */}
-          <Box p={6} bg={cardBg} borderRadius="lg" boxShadow="md">
-            <Heading size="md" mb={2}>Entrenamiento de hoy</Heading>
-            <Text fontWeight="semibold" fontSize="lg">Entrenamiento HIIT</Text>
-            <Text mt={2}>Duración: 35 minutos</Text>
-            <Text fontSize="sm" color="gray.500">Incluye: jumping jacks, burpees, mountain climbers</Text>
+          {/* Cambiar rutina */}
+          <Box
+            bg="white"
+            p={6}
+            borderRadius="lg"
+            boxShadow="md"
+            flex="1"
+            textAlign="center"
+            border="1px solid"
+            borderColor="gray.200"
+          >
+            <Icon as={FaExchangeAlt} boxSize={6} color="purple.500" mb={2} />
+            <Text fontSize="xl" fontWeight="semibold" color="gray.700">
+              Cambiar rutina
+            </Text>
+            <Text color="gray.500" mt={2}>Opcional: actualiza tus metas o tipo de rutina.</Text>
           </Box>
-
-          {/* Peso histórico */}
-          <Box p={6} bg={cardBg} borderRadius="lg" boxShadow="md">
-            <Heading size="md" mb={2}>Historial de peso</Heading>
-            <Text>Últimos días:</Text>
-            <Text mt={2} fontSize="sm">Lun: 71.0 kg</Text>
-            <Text fontSize="sm">Mar: 70.8 kg</Text>
-            <Text fontSize="sm">Mié: 70.5 kg</Text>
-            <Text fontSize="sm">Hoy: 70.5 kg</Text>
-          </Box>
-        </SimpleGrid>
-
-        <Divider my={8} />
-
-        {/* Tip diario */}
-        <Box p={6} bg={cardBg} borderRadius="lg" boxShadow="md" maxW="600px" w="full" textAlign="center">
-          <Text fontSize="md" color="gray.600" fontStyle="italic">
-            🧠 Tip del día: "No se trata de hacer más, sino de hacerlo constante. Mantente firme en tu rutina."
-          </Text>
-        </Box>
-
-        {/* Ícono decorativo */}
-        <Box mt={10}>
-          <Icon as={FaRunning} boxSize={12} color="red.400" />
-        </Box>
-
-        {/* Gráfico simulado */}
-        <Box mt={10} p={6} bg={cardBg} borderRadius="lg" boxShadow="md" maxW="700px" w="full">
-          <Heading size="md" mb={4}>Progreso de Peso</Heading>
-          <Line data={data} options={options} />
-        </Box>
-
-        {/* Sugerencias IA */}
-        <Box mt={10} p={6} bg={cardBg} borderRadius="lg" boxShadow="md" maxW="700px" w="full">
-          <Heading size="md" mb={2}>Sugerencias Semanales (IA)</Heading>
-          <Text fontSize="sm" color="gray.600" mb={1}>✔️ Intenta dormir al menos 7h por noche para mejorar la quema de grasa.</Text>
-          <Text fontSize="sm" color="gray.600" mb={1}>✔️ Cambia una comida alta en carbohidratos por una fuente magra de proteína.</Text>
-          <Text fontSize="sm" color="gray.600" mb={1}>✔️ Agrega 10 minutos de caminata al finalizar tus entrenamientos.</Text>
-        </Box>
+        </Stack>
       </Flex>
-       <ChatBot />
+      <ChatBot />
     </Flex>
   );
 }

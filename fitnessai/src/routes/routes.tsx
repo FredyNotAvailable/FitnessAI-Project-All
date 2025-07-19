@@ -9,6 +9,9 @@ import PerfilPage from "../ui/pages/PerfilPage"; // CORRECTO: P mayúscula
 import PrivateRoute from "./PrivateRoute";
 import PublicRoute from "./PublicRoute";
 
+import RegistroDiarioAlimentacion from "../ui/pages/RegistroDiarioPage";
+import RegistroDiarioPage from "../ui/pages/RegistroDiarioPage";
+
 export const routes: RouteObject[] = [
   { path: "/", element: <Navigate to="/login" replace /> },
 
@@ -33,7 +36,9 @@ export const routes: RouteObject[] = [
     element: <PrivateRoute />,
     children: [
       { path: "", element: <DashboardPage /> },
-      { path: "perfil", element: <PerfilPage /> }, // CORREGIDO
+      { path: "perfil", element: <PerfilPage /> },
+      { path: "registro-diario", element: <RegistroDiarioPage /> },
+      // Puedes agregar aquí las otras secciones del registro diario conforme las vayas creando
     ],
   },
 ];
