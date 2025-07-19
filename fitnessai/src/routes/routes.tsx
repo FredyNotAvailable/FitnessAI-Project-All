@@ -4,6 +4,7 @@ import { Navigate } from "react-router-dom";
 import LoginPage from "../ui/pages/LoginPage";
 import RegisterPage from "../ui/pages/RegisterPage";
 import DashboardPage from "../ui/pages/DashboardPage";
+import PerfilPage from "../ui/pages/PerfilPage"; // CORRECTO: P mayúscula
 
 import PrivateRoute from "./PrivateRoute";
 import PublicRoute from "./PublicRoute";
@@ -31,7 +32,8 @@ export const routes: RouteObject[] = [
     path: "/dashboard",
     element: <PrivateRoute />,
     children: [
-      { path: "", element: <DashboardPage /> }
+      { path: "", element: <DashboardPage /> },
+      { path: "perfil", element: <PerfilPage /> }, // CORREGIDO
     ],
-  }
+  },
 ];

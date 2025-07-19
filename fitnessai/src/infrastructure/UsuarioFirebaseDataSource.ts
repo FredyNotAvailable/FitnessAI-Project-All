@@ -3,7 +3,7 @@
 import { IUsuarioRepository } from '../domain/IUsuarioRepository';
 import type { Usuario } from '../domain/Usuario';
 import { db } from '../app/firebase';
-import { doc, setDoc, getDoc } from 'firebase/firestore';
+import { doc, setDoc, getDoc, updateDoc } from 'firebase/firestore';
 
 export class UsuarioFirebaseDataSource implements IUsuarioRepository {
   
@@ -18,5 +18,11 @@ export class UsuarioFirebaseDataSource implements IUsuarioRepository {
       return docSnap.data() as Usuario;
     }
     return null;
+  }
+  
+  async actualizarUsuario(usuario: Partial<Usuario> & { id: string }): Promise<void> {
+    const docRef = doc(db, 'usuarios', usuario.id);
+    // Actualiza solo los campos que vienen en usuario
+    await updateDoc(docRef, usuario);
   }
 }

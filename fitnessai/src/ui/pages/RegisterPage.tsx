@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import {
   Box,
   Button,
@@ -32,7 +32,7 @@ export default function RegisterPage() {
   const [isLoading, setIsLoading] = useState(false);
 
   const toast = useToast();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const handleRegister = async () => {
     if (!nombre || !edad || !peso || !altura || !objetivo || !email || !password) {
@@ -82,9 +82,9 @@ export default function RegisterPage() {
         duration: 3500,
         isClosable: true,
          position: "top", // <--- Aquí
-        onCloseComplete: () => {
-          navigate("/login");
-        },
+        // onCloseComplete: () => {
+        //   navigate("/login");
+        // },
       });
     } catch (error: any) {
       toast({
@@ -104,7 +104,7 @@ export default function RegisterPage() {
       {/* Izquierda: imagen 50% */}
       <Box flex="1" position="relative" display={{ base: "none", md: "block" }}>
         <img
-          src="/fitness-image.jpg"
+          src="/images/fitness-image.jpg"
           alt="Fitness"
           style={{ objectFit: "cover", width: "100%", height: "100vh" }}
         />

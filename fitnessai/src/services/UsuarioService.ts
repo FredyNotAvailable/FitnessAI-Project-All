@@ -11,11 +11,15 @@ export class UsuarioService {
   }
 
   async registrarUsuario(usuario: Usuario) {
-    // Aquí puedes validar datos o agregar lógica
     await this.repository.guardarUsuario(usuario);
   }
 
   async obtenerUsuario(id: string) {
     return await this.repository.obtenerUsuario(id);
+  }
+
+  async actualizarUsuario(usuario: Partial<Usuario> & { id: string }) {
+    // Aquí puedes validar o hacer lógica antes de actualizar
+    await this.repository.actualizarUsuario(usuario);
   }
 }

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import {
   Box,
   Button,
@@ -55,9 +55,9 @@ export default function LoginPage() {
         isClosable: true,
         position: "top",
         icon: <CheckCircleIcon />,
-        onCloseComplete: () => {
-          navigate("/dashboard");
-        },
+        // onCloseComplete: () => {
+        //   navigate("/dashboard");
+        // },
       });
     } catch (error: any) {
       toast({
@@ -83,7 +83,7 @@ export default function LoginPage() {
       {/* Izquierda: imagen 50% */}
       <Box flex="1" position="relative" display={{ base: "none", md: "block" }}>
         <Image
-          src="/fitness-image.jpg"
+          src="/images/fitness-image.jpg"
           alt="Fitness"
           objectFit="cover"
           width="100%"
