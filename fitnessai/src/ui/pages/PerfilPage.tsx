@@ -21,9 +21,7 @@ import { UsuarioFirebaseDataSource } from "../../infrastructure/UsuarioFirebaseD
 import { UsuarioService } from "../../services/UsuarioService";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { storage } from "../../app/firebase";
-import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
-import ChatBot from "../components/ChatBot";
 
 export default function PerfilPage() {
   const toast = useToast();
@@ -34,7 +32,6 @@ export default function PerfilPage() {
   const [isEditing, setIsEditing] = useState(false);
   const [form, setForm] = useState<Usuario | null>(null);
   const [saving, setSaving] = useState(false);
-  const navigate = useNavigate();
 
   const usuarioService = new UsuarioService(new UsuarioFirebaseDataSource());
 

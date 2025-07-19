@@ -11,7 +11,7 @@ import {
   Avatar,
   useColorModeValue,
 } from "@chakra-ui/react";
-import { ChatIcon, CloseIcon } from "@chakra-ui/icons";
+import { CloseIcon } from "@chakra-ui/icons";
 
 export default function ChatBot() {
   const [isOpen, setIsOpen] = useState(false);
