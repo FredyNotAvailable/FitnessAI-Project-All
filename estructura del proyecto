@@ -1,0 +1,15 @@
+Explicación rápida:
+app/: Configuración del proyecto (Firebase, rutas)
+
+domain/: Define modelos e interfaces (p. ej. Usuario)
+
+infrastructure/: Acceso a datos, repositorios para Firebase o backend
+
+services/: Reglas y lógica de negocio (ej: validaciones, manipulación)
+
+ui/: Toda la interfaz, con separación entre componentes reutilizables y páginas
+
+hooks/: Hooks personalizados para manejar estados y lógica reactiva
+
+utils/: Funciones generales auxiliares
+
