@@ -12,7 +12,7 @@ import axios from "axios";
 import { ChatMessage } from "./ChatMessage";
 import MapaLugaresEntrenamientoCard from "./MapaLugaresEntrenamientoCard";
 import { SimpleCard } from "./SimpleCard";
-import { listaComidas, listaEjercicios } from "./constants";
+import { listaComidas } from "./constants";
 
 interface Message {
   role: "user" | "assistant";
