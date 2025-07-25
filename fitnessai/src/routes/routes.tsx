@@ -3,8 +3,7 @@ import { Navigate } from "react-router-dom";
 
 import LoginPage from "../ui/pages/LoginPage";
 import RegisterPage from "../ui/pages/RegisterPage";
-import DashboardPage from "../ui/pages/DashboardPage";
-import PerfilPage from "../ui/pages/PerfilPage"; // CORRECTO: P mayúscula
+import { ChatPage } from "../ui/pages/ChatPage";
 
 import PrivateRoute from "./PrivateRoute";
 import PublicRoute from "./PublicRoute";
@@ -29,11 +28,10 @@ export const routes: RouteObject[] = [
     ),
   },
   {
-    path: "/dashboard",
+    path: "/chat",
     element: <PrivateRoute />,
     children: [
-      { path: "", element: <DashboardPage /> },
-      { path: "perfil", element: <PerfilPage /> },
+      { path: "", element: <ChatPage /> },
       // Puedes agregar aquí las otras secciones del registro diario conforme las vayas creando
     ],
   },

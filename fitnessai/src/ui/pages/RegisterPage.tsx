@@ -11,7 +11,6 @@ import {
   Stack,
   Text,
   Link,
-  Select,
   useToast,
 } from "@chakra-ui/react";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
@@ -25,33 +24,18 @@ export default function RegisterPage() {
   const [fechaNacimiento, setFechaNacimiento] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [objetivo, setObjetivo] = useState("");
-  const [frecuencia, setFrecuencia] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
   const toast = useToast();
   const navigate = useNavigate();
 
-  const calcularEdad = (fecha: string) => {
-    const hoy = new Date();
-    const nacimiento = new Date(fecha);
-    let edad = hoy.getFullYear() - nacimiento.getFullYear();
-    const m = hoy.getMonth() - nacimiento.getMonth();
-    if (m < 0 || (m === 0 && hoy.getDate() < nacimiento.getDate())) {
-      edad--;
-    }
-    return edad;
-  };
-
   const handleRegister = async () => {
     if (
       !nombre ||
       !fechaNacimiento ||
       !email ||
-      !password ||
-      !objetivo ||
-      !frecuencia
+      !password
     ) {
       toast({
         title: "Campos incompletos",
@@ -102,9 +86,6 @@ export default function RegisterPage() {
         id: user.uid,
         nombre,
         fechaNacimiento,
-        edad: calcularEdad(fechaNacimiento),
-        objetivo,
-        frecuenciaSemanal: Number(frecuencia),
         createdAt: serverTimestamp(),
       });
 
@@ -211,37 +192,6 @@ export default function RegisterPage() {
                 </Button>
               </InputRightElement>
             </InputGroup>
-
-            {/* Select Objetivo */}
-            <Select
-              placeholder="Selecciona tu objetivo"
-              value={objetivo}
-              onChange={(e) => setObjetivo(e.target.value)}
-              focusBorderColor="gray.500"
-              borderColor="gray.300"
-            >
-              <option value="perder_peso">Perder peso</option>
-              <option value="ganar_musculo">Ganar músculo</option>
-              <option value="mantenerme">Mantenerme</option>
-              <option value="mejorar_resistencia">Mejorar resistencia</option>
-              <option value="otros">Otros</option>
-            </Select>
-
-            {/* Select Frecuencia */}
-            <Select
-              placeholder="Frecuencia semanal de entrenamiento"
-              value={frecuencia}
-              onChange={(e) => setFrecuencia(e.target.value)}
-              focusBorderColor="gray.500"
-              borderColor="gray.300"
-            >
-              {[1, 2, 3, 4, 5, 6, 7].map((dia) => (
-                <option key={dia} value={dia}>
-                  {dia} día{dia > 1 ? "s" : ""}
-                </option>
-              ))}
-            </Select>
-
             <Button
               colorScheme="gray"
               bg="gray.700"

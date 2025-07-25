@@ -21,7 +21,7 @@ export default function PublicRoute({ children }: PublicRouteProps) {
 
   // Si ya hay sesión iniciada, redirige al dashboard
   if (user) {
-    return <Navigate to="/dashboard" replace />;
+    return <Navigate to="/chat" replace />;
   }
 
   // Si no hay sesión, muestra la ruta pública (login, registro, etc.)

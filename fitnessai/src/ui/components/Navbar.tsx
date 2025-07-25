@@ -2,7 +2,6 @@ import {
   Box,
   Flex,
   Text,
-  IconButton,
   Spacer,
   useColorModeValue,
   Button,
@@ -14,7 +13,6 @@ import {
   AlertDialogContent,
   AlertDialogOverlay,
 } from "@chakra-ui/react";
-import { FiUser } from "react-icons/fi";
 import { signOut } from "firebase/auth";
 import { auth } from "../../app/firebase";
 import { useNavigate } from "react-router-dom";
@@ -43,32 +41,12 @@ export default function Navbar() {
             fontSize="xl"
             color="brand.700"
             cursor="pointer"
-            onClick={() => navigate("/dashboard")}
+            onClick={() => navigate("/chat")}
             _hover={{ textDecoration: "underline" }}
           >
             FitnessAI
           </Text>
-
           <Spacer />
-
-          <Button
-            size="sm"
-            variant="ghost"
-            mr={3}
-            onClick={() => navigate("/dashboard")}
-          >
-            Dashboard
-          </Button>
-
-          <IconButton
-            aria-label="Perfil"
-            icon={<FiUser />}
-            variant="ghost"
-            fontSize="20px"
-            onClick={() => navigate("/dashboard/perfil")}
-            mr={3}
-          />
-
           <Button size="sm" colorScheme="red" onClick={onOpen}>
             Cerrar sesión
           </Button>

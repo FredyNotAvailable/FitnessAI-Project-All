@@ -3,29 +3,28 @@ import { extendTheme } from "@chakra-ui/react";
 const theme = extendTheme({
   colors: {
     brand: {
-      50: "#f7fafc",
-      100: "#edf2f7",
-      200: "#e2e8f0",
-      300: "#cbd5e0",
-      400: "#a0aec0",
-      500: "#1a202c", // gris principal
-      // 500: "#4a5568", // gris principal
-      600: "#2d3748",
-      700: "#1a202c",
-      800: "#171923",
-      900: "#0f1115",
+      50:  "#f5f5f5",
+      100: "#e0e0e0",
+      200: "#c2c2c2",
+      300: "#a3a3a3",
+      400: "#858585",
+      500: "#666666",
+      600: "#4d4d4d",
+      700: "#333333",
+      800: "#232323ff",
+      900: "rgba(24, 24, 24, 1)",
     },
     gray: {
-      50: "#ffffff",    // blanco puro
-      100: "#e1e4e8",   // gris muy claro, pero más oscuro que antes
-      200: "#b0b8c1",   // gris claro más intenso
-      300: "#8892a0",   // gris medio oscuro
-      400: "#626d7e",   // gris oscuro suave
-      500: "#444e61",   // gris oscuro más marcado
-      600: "#2f3744",   // gris muy oscuro
-      700: "#1f2531",   // gris casi negro
-      800: "#151a24",
-      900: "#0b0e12",
+      50:  "#fafafa",
+      100: "#f0f0f0",
+      200: "#d9d9d9",
+      300: "#bfbfbf",
+      400: "#a6a6a6",
+      500: "#8c8c8c",
+      600: "#737373",
+      700: "#595959",
+      800: "#404040",
+      900: "#262626",
     },
   },
   fonts: {

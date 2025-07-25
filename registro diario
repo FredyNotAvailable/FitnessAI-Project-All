@@ -1,0 +1,134 @@
+🧭 Flujo del Usuario en la Web Fitness
+1. 📝 Registro e Inicio de Sesión
+El usuario entra a la web.
+
+Ve un mensaje tipo: “¡Bienvenido! ¿Listo para moverte?”
+
+Puede:
+
+Registrarse con su email (o cuenta Google si deseas incluirlo).
+
+Ingresar si ya tiene cuenta.
+
+2. 🎯 Primera vez: Selección de objetivos (opcional pero motivador)
+Se le pregunta:
+
+“¿Qué te gustaría lograr?”
+
+🔹 Sentirme con más energía
+
+🔹 Ganar fuerza
+
+🔹 Bajar de peso
+
+🔹 Mantenerme activo
+
+Luego:
+
+“¿Con cuánta frecuencia quieres moverte?”
+
+🔸 2 veces por semana
+
+🔸 3 veces
+
+🔸 4 o más
+
+Esto permite adaptar la rutina semanal (más adelante con IA).
+
+3. 📅 Pantalla principal: Inicio
+Saludo: “Hola [nombre], ¿cómo va tu día?”
+
+Botón grande: “Registrar día”
+
+También puede ver:
+
+👀 Último resumen
+
+📊 Progreso semanal
+
+⚙️ Cambiar rutina (opcional)
+
+4. ✅ Registro Diario (flujo amigable)
+Usuario responde:
+
+🏋️ Entrenamiento:
+¿Hiciste la rutina de hoy?
+✅ Completa / ⚠️ Incompleta / ❌ No la hice
+
+¿Cuánto tiempo entrenaste?
+⏱️ 10, 20, 30, 40+ minutos
+
+¿Cómo estuvo el entreno?
+🟢 Suave / 🟡 Normal / 🔴 Intenso
+
+¿Extras?
+🚶 Caminé bastante / 🧘 Respiración o relajación / 🤸 Estiré
+
+🥗 Alimentación:
+¿Comiste saludable hoy?
+✅ Sí / ⚠️ Más o menos / ❌ Mal
+
+¿Qué comiste hoy?
+🍗 Carne / 🥦 Verduras / 🍎 Frutas / 🍚 Carbohidratos / 🧀 Lácteos / 🍩 Dulces / 🧃 Bebidas azucaradas
+
+💧 Agua:
+¿Tomaste suficiente agua hoy?
+✅ Sí / ⚠️ Un poco / ❌ Casi nada
+
+😴 Sueño:
+¿Dormiste bien anoche?
+✅ Sí / ⚠️ Más o menos / ❌ Mal
+
+¿Cuántas horas?
+⏰ 4 / 5 / 6 / 7 / 8+
+
+5. 💬 Respuesta motivacional automática (IA)
+Según lo registrado, el sistema muestra un mensaje como:
+
+Si todo bien:
+
+“¡Eres un crack! 🔥 Sigue así y verás cambios pronto.”
+
+Si no entrenó:
+
+“No pasa nada, mañana es otra oportunidad 💪 ¡Tú puedes!”
+
+Si comió mal:
+
+“Una comida no define tu camino. A seguir con todo mañana 🥦”
+
+6. 📈 Progreso y Resumen Semanal
+Datos que se guardan:
+Días entrenados
+
+Comidas saludables
+
+Estado de ánimo
+
+Hidratación
+
+Cada lunes:
+Se pregunta:
+
+“¿Quieres cambiar tu rutina o mantenerla?”
+
+Se genera una nueva rutina (IA)
+
+Muestra pantalla resumen:
+
+“Esta semana hiciste 3/4 entrenamientos ✅”
+“Comiste bien 4 días 🍽️”
+“Estado de ánimo: motivado 😁”
+“Agua: bien 5 días 💧”
+
+Mensaje IA:
+
+“¡Muy bien! Tu cuerpo ya lo está notando, aunque aún no lo veas. 💪🔥”
+
+7. 🧩 Extras amigables
+✅ Recordatorios opcionales:
+“¿Listo para moverte hoy?”
+
+✅ Puedes registrar el día anterior
+
+✅ Sin escribir, solo tocas opciones

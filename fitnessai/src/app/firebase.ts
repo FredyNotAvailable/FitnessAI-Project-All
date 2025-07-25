@@ -3,7 +3,7 @@ import { getFirestore } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';  // << aquí están las importaciones que faltan
 import { getStorage } from 'firebase/storage';  // <-- faltaba esta importación
 
-const firebaseConfig = {
+export const firebaseConfig = {
   apiKey: "AIzaSyDh5SPTDdCHUEkoo80KZEuWD_YV_TC7MEg",
   authDomain: "fitnessai-project.firebaseapp.com",
   projectId: "fitnessai-project",
