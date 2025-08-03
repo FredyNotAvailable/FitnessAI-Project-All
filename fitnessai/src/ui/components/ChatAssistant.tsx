@@ -45,7 +45,7 @@ export const ChatAssistant = () => {
     setLoading(true);
 
     try {
-      const res = await axios.post<ChatResponse>("http://localhost:3000/api/ai", {
+      const res = await axios.post<ChatResponse>("https://fitnessai-project-all.onrender.com/api/ai", {
         prompt: input,
       });
 

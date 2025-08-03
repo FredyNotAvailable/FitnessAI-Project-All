@@ -1,6 +1,7 @@
 import { Box, Heading, Text, Button } from "@chakra-ui/react";
 import { ExternalLinkIcon } from "lucide-react";
 
+const GOOGLE_MAPS_API_KEY = "AIzaSyD6syDYTxYn9BvQA_1l3v4bHhWyxvxNk9Q";
 const MapaLugaresEntrenamientoCard = () => {
   return (
     <Box
@@ -23,7 +24,7 @@ const MapaLugaresEntrenamientoCard = () => {
       <Box
         as="iframe"
         title="Mapa de gimnasios"
-        src={`https://www.google.com/maps/embed/v1/search?key=TU_API_KEY&q=gimnasios+cerca+de+mi`}
+        src={`https://www.google.com/maps/embed/v1/search?key=${GOOGLE_MAPS_API_KEY}&q=gimnasios+cerca+de+mi`}
         width="100%"
         height="300"
         style={{ borderRadius: "12px", border: 0 }}
